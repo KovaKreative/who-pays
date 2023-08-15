@@ -8,6 +8,23 @@ import { Text, Input, Button, ListItem, color } from '@rneui/base';
 
 export default function Home(props) {
 
+  const renderedNames = props.names?.map((name, i) => {
+    return <ListItem
+      key={i}
+      bottomDivider
+      style={{ width: '100%' }}
+      containerStyle={{ backgroundColor: '#0000' }}
+      onLongPress={() => {
+        props.removeName(i);
+      }}
+    >
+      <ListItem.Chevron />
+      <ListItem.Content>
+        <ListItem.Title style={{ color: '#FED'}}>{name}</ListItem.Title>
+      </ListItem.Content>
+    </ListItem>;
+  });
+
   return (
     <View style={styles.container}>
       <Formik
@@ -55,7 +72,12 @@ export default function Home(props) {
           </>
         )}
       </Formik>
-      <Text style={styles.textLight}>{props.names}</Text>
+      {props.names.length
+        ?
+        renderedNames
+        :
+        <></>
+      }
     </View>
   );
 }

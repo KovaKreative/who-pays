@@ -7,10 +7,18 @@ export default function App() {
 
   const [state, setState] = useState({ view: 0, names: [], loser: '' });
 
+  const removeName = function(index) {
+    const namesBuffer = [...state.names];
+    namesBuffer.splice(index, 1);
+    setState(prev => {
+      return { ...prev, names: [...namesBuffer] };
+    });
+  };
+
   return (
     <ScrollView style={styles.fullView}>
       <View style={styles.container}>
-        {!state.view ? <Home names={state.names} onSubmit={name => {
+        {!state.view ? <Home names={state.names} removeName={removeName} onSubmit={name => {
           setState(prev => {
             return { ...prev, names: [...prev.names, name] };
           });
