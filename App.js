@@ -10,7 +10,11 @@ export default function App() {
   return (
     <ScrollView style={styles.fullView}>
       <View style={styles.container}>
-        {!state.view ? <Home names={state.names} /> : <Loser loser={state.loser} />}
+        {!state.view ? <Home names={state.names} onSubmit={name => {
+          setState(prev => {
+            return { ...prev, names: [...prev.names, name] };
+          });
+        }} /> : <Loser loser={state.loser} />}
       </View>
     </ScrollView>
   );
