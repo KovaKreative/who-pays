@@ -29,9 +29,10 @@ export default function Home(props) {
     <View style={styles.container}>
       <Formik
         initialValues={{ name: '' }}
-        onSubmit={(e, { resetForm }) => {
-          console.log(e.name);
-          props.onSubmit(e.name);
+        onSubmit={(form, { resetForm }) => {
+          console.log(form.name);
+          props.addName(form.name);
+          resetForm();
         }}
         validationSchema={Yup.object({
           name: Yup.string()
@@ -48,11 +49,14 @@ export default function Home(props) {
               leftIcon={{ type: 'font-awesome', name: 'user-plus' }}
               inputContainerStyle={{
                 marginHorizontal: 5,
-                marginTop: 5,
+                marginTop: 40,
                 paddingLeft: 5,
                 backgroundColor: 'white'
               }}
-              name='name'
+              id="name"
+              name="name"
+              type="text"
+              value={values.name}
               onChangeText={handleChange('name')}
               onBlur={handleBlur('name')}
               renderErrorMessage={errors.name && touched.name}
@@ -72,11 +76,15 @@ export default function Home(props) {
           </>
         )}
       </Formik>
-      {props.names.length
-        ?
-        renderedNames
-        :
-        <></>
+      {props.names.length > 0 &&
+        <>
+        {renderedNames}
+        <Button 
+          buttonStyle={styles.button}
+          title="Decide"
+          onPress={props.decide}
+        />
+        </>
       }
     </View>
   );

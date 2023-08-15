@@ -1,11 +1,17 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Home from './src/components/Home';
 import Loser from './src/components/Loser';
 
 export default function App() {
 
   const [state, setState] = useState({ view: 0, names: [], loser: '' });
+
+  const addName = function(name) {
+    setState(prev => {
+      return { ...prev, names: [...prev.names, name] };
+    });
+  };
 
   const removeName = function(index) {
     const namesBuffer = [...state.names];
@@ -15,14 +21,29 @@ export default function App() {
     });
   };
 
+  const decide = function() {
+    const loserIndex = Math.floor(Math.random() * state.names.length);
+    setState(prev => {
+      return { ...prev, loser: state.names[loserIndex] };
+    });
+  };
+
+  useEffect(() => {
+    if (state.loser) {
+      setState(prev => {
+        return { ...prev, view: 1 };
+      });
+    }
+  }, [state.loser]);
+
   return (
     <ScrollView style={styles.fullView}>
       <View style={styles.container}>
-        {!state.view ? <Home names={state.names} removeName={removeName} onSubmit={name => {
-          setState(prev => {
-            return { ...prev, names: [...prev.names, name] };
-          });
-        }} /> : <Loser loser={state.loser} />}
+        {!state.view ? <Home
+          names={state.names}
+          removeName={removeName}
+          addName={addName}
+          decide={decide} /> : <Loser loser={state.loser} />}
       </View>
     </ScrollView>
   );
