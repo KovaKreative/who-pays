@@ -37,10 +37,17 @@ export default function Home(props) {
             name='name'
             onChangeText={handleChange('name')}
             onBlur={handleBlur('name')}
+            renderErrorMessage={errors.name && touched.name}
+            errorMessage={errors.name}
+            errorStyle={{
+              marginHorizontal: 5
+            }}
           />
           <Button
             title="Add"
+            size="lg"
             onPress={handleSubmit}
+            buttonStyle={styles.button}
           >
 
           </Button>
@@ -53,5 +60,9 @@ export default function Home(props) {
 const styles = StyleSheet.create({
   textLight: {
     color: '#FED'
+  },
+  button: {
+    borderRadius: 50,
+    backgroundColor: '#495'
   }
 });
