@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Loser() {
+export default function Loser(props) {
   return (
     <View>
       <Text style={styles.textLight}>Loser?</Text>

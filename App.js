@@ -8,7 +8,7 @@ export default function App() {
   const [state, setState] = useState({ view: 0, names: [], loser: '' });
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.fullView}>
       <View style={styles.container}>
         {!state.view ? <Home names={state.names} /> : <Loser loser={state.loser} />}
       </View>
@@ -17,10 +17,13 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  fullView: {
+    backgroundColor: '#123',
+  },
   container: {
     flex: 1,
-    backgroundColor: '#123',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 80
   }
 });
