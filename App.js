@@ -22,7 +22,13 @@ export default function App() {
   };
 
   const decide = function() {
-    const loserIndex = Math.floor(Math.random() * state.names.length);
+    const numberOfNames = state.names.length;
+
+    if(numberOfNames < 2) {
+      return alert("Not enough names!");
+    }
+
+    const loserIndex = Math.floor(Math.random() * numberOfNames);
     setState(prev => {
       return { ...prev, loser: state.names[loserIndex] };
     });
