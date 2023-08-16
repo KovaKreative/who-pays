@@ -3,8 +3,11 @@ import { StyleSheet, View } from "react-native";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Text, Input, Button, ListItem, color } from '@rneui/base';
+import { useState } from "react";
 
 export default function Home(props) {
+
+  const [buttonColor, setButtonColor] = useState(String(Math.floor(Math.random() * 100)));
 
   const renderedNames = props.names?.map((name, i) => {
     return <ListItem
@@ -84,6 +87,10 @@ export default function Home(props) {
           <Button
             buttonStyle={styles.button}
             title="Decide"
+            titleStyle={{
+              fontFamily: 'OlivessansPimiento',
+              fontSize: 24
+            }}
             onPress={props.decide}
           />
         </>
@@ -103,7 +110,10 @@ const styles = StyleSheet.create({
   textLight: {
     color: '#FED',
     fontFamily: 'OlivessansPimiento',
-    fontSize: 32
+    fontSize: 32,
+    textShadowColor: '#0F0',
+    textShadowRadius: 20,
+    padding: 10
   },
   button: {
     marginTop: 10,

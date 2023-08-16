@@ -24,6 +24,8 @@ export default function Root() {
   }, []);
 
   return (
+    fontsLoaded
+    &&
     <>
       <App />
       <Toast />

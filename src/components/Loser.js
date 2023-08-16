@@ -39,10 +39,10 @@ const styles = StyleSheet.create({
   textLight: {
     color: '#FED',
     fontFamily: 'OlivessansPimiento',
-    fontSize: 28,
-    textAlign: 'center',
-    paddingHorizontal: 20,
-    marginBottom: 10
+    fontSize: 32,
+    textShadowColor: '#F0F',
+    textShadowRadius: 20,
+    padding: 10
   },
   button: {
     marginTop: 10,
