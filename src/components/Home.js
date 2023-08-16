@@ -1,7 +1,5 @@
 import { StyleSheet, View } from "react-native";
 
-import { useState } from "react";
-
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Text, Input, Button, ListItem, color } from '@rneui/base';
@@ -20,7 +18,7 @@ export default function Home(props) {
     >
       <ListItem.Chevron />
       <ListItem.Content>
-        <ListItem.Title style={{ color: '#FED'}}>{name}</ListItem.Title>
+        <ListItem.Title style={{ color: '#FED' }}>{name}</ListItem.Title>
       </ListItem.Content>
     </ListItem>;
   });
@@ -70,6 +68,10 @@ export default function Home(props) {
               size="lg"
               onPress={handleSubmit}
               buttonStyle={styles.button}
+              titleStyle={{
+                fontFamily: 'OlivessansPimiento',
+                fontSize: 24
+              }}
             >
 
             </Button>
@@ -78,12 +80,12 @@ export default function Home(props) {
       </Formik>
       {props.names.length > 0 &&
         <>
-        {renderedNames}
-        <Button 
-          buttonStyle={styles.button}
-          title="Decide"
-          onPress={props.decide}
-        />
+          {renderedNames}
+          <Button
+            buttonStyle={styles.button}
+            title="Decide"
+            onPress={props.decide}
+          />
         </>
       }
     </View>
@@ -99,10 +101,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textLight: {
-    color: '#FED'
+    color: '#FED',
+    fontFamily: 'OlivessansPimiento',
+    fontSize: 32
   },
   button: {
     marginTop: 10,
+    padding: 25,
+    paddingHorizontal: 25,
     borderRadius: 50,
     backgroundColor: '#495'
   }
